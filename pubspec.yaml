@@ -1,5 +1,5 @@
 name: test_wallet
-description: "A new Flutter project."
+description: "Reference EUDI wallet demo — composes attested_secure_keys (hardware keys) and sdjwt_oid4vc (SD-JWT VC / OpenID4VC holder flow) into a working issue → hold → present flow."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
