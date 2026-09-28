@@ -42,7 +42,8 @@ This exercises the full EUDI holder loop — **hardware key → issuance → pre
     Needs an **enrolled fingerprint/PIN** (the holder key is biometric-gated).
   - **Emulator:** works, but the key degrades to `software` and attestation to `none`
     (honest fallback) — fine for a functional test, not for hardware assurance.
-  - iOS needs a real device + a Mac (not covered here).
+  - **iOS:** needs a Mac with Xcode. Mode A passes on the iOS Simulator (see §7). The
+    live Mode B loop on a real iPhone is not done yet.
 - A **second screen** (a computer browser) to open the EUDI issuer/verifier web pages
   — you scan the QR codes they show with the phone.
 - Network access to `*.eudiw.dev` (public, no credentials).
@@ -186,6 +187,12 @@ For a quick check with **zero external dependencies** (e.g. CI, or verifying a d
   ```bash
   flutter test integration_test/mode_a_test.dart -d <device-id>
   ```
+- **iOS Simulator:** passed on 2026-09-28 (iPhone 17 Pro, iOS 26.1, Xcode 26.1.1, Flutter
+  3.47.5). Boot the simulator fully before the test (`xcrun simctl bootstatus <id>`). If
+  you don't, the app launch can hang after "Xcode build done". On an Apple Silicon Mac
+  the Simulator reports `effectiveLevel = secureEnclave` (emulated). App Attest is not
+  available there, so `hwAttestation = false`. `flutter build ios --release
+  --no-codesign` also builds.
 
 ---
 
